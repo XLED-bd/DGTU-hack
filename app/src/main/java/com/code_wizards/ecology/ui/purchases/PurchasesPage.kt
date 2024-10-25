@@ -1,5 +1,6 @@
 package com.code_wizards.ecology.ui.purchases
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,18 +26,16 @@ import com.code_wizards.ecology.ui.bottonbar.BottomNavigationBar
 import com.code_wizards.ecology.ui.mainpage.TopBar
 import com.code_wizards.ecology.ui.theme.EcologyTheme
 import com.code_wizards.ecology.viewmodels.MainViewModel
+import com.code_wizards.ecology.viewmodels.PurchasesViewModel
 
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun PurchasesPage( navController: NavController, viewModel: MainViewModel){
+fun PurchasesPage(navController: NavController, viewModel: MainViewModel, id_user: Int){
 
-    val purchases = listOf(
-        Purchase("Reusable Water Bottle", "$25.99", "Reduced by 10kg", ecoFriendly = true),
-        Purchase("Organic Cotton Bag", "$15.49", "Reduced by 5kg", ecoFriendly = true),
-        Purchase("Electric Scooter Rental", "$8.00", "Reduced by 3kg", ecoFriendly = true),
-        Purchase("Single-use Plastic Bag", "$0.10", "Increased by 0.1kg", ecoFriendly = false)
-    )
+    val purchasesViewModel: PurchasesViewModel = hiltViewModel()
 
+    purchasesViewModel.loadPurchases(id_user)
 
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = { TopBar() },
@@ -61,8 +60,8 @@ fun PurchasesPage( navController: NavController, viewModel: MainViewModel){
                 contentPadding = PaddingValues(vertical = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(purchases.size) { index ->
-                    PurchaseItemCard(purchase = purchases[index])
+                items(purchasesViewModel.purchases.value.size) { index ->
+                    PurchaseItemCard(purchase = purchasesViewModel.purchases.value[index])
                 }
             }
         }
@@ -78,6 +77,6 @@ fun PurchasePreview() {
     val mainViewModel: MainViewModel = hiltViewModel()
 
     EcologyTheme {
-        PurchasesPage(navController, mainViewModel)
+        PurchasesPage(navController, mainViewModel, 1)
     }
 }

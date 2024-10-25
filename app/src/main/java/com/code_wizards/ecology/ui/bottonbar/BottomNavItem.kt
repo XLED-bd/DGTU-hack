@@ -4,8 +4,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.code_wizards.ecology.navigation.Screen
 
@@ -22,7 +24,7 @@ sealed class BottomNavItem(
     object Search : BottomNavItem(
         route = Screen.MapPage.route,
         title = "Карта",
-        icon = Icons.Default.Search
+        icon = Icons.Default.Place
     )
     object Favorite : BottomNavItem(
         route = "favorite",
@@ -34,13 +36,13 @@ sealed class BottomNavItem(
         title = "Профиль",
         icon = Icons.Default.Person
     )
-    object Settings : BottomNavItem(
-        route = "settings",
-        title = "Настройки",
-        icon = Icons.Default.Settings
+    object Purchases : BottomNavItem(
+        route = Screen.PurchasesPage.route,
+        title = "Покупки",
+        icon = Icons.Default.ShoppingCart
     )
 
     companion object {
-        fun getItems() = listOf(Home, Search, Favorite, Profile, Settings)
+        fun getItems() = listOf(Home, Search, Favorite, Purchases, Profile)
     }
 }

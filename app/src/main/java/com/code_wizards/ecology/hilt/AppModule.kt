@@ -2,6 +2,7 @@ package com.code_wizards.ecology.hilt
 
 import android.content.Context
 import com.code_wizards.ecology.network.interfaceApi
+import com.code_wizards.ecology.repository.PurchaseRepository
 import com.code_wizards.ecology.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -28,5 +29,11 @@ object AppModule {
     @Singleton
     fun provideUserRepository(api: interfaceApi): UserRepository{
         return UserRepository(api)
+    }
+
+    @Provides
+    @Singleton
+    fun providePurchaseRepository(api: interfaceApi): PurchaseRepository {
+        return PurchaseRepository(api)
     }
 }

@@ -18,8 +18,8 @@ fun BottomNavigationBar(navController: NavController, viewModel: MainViewModel) 
         BottomNavItem.Home,
         BottomNavItem.Search,
         BottomNavItem.Favorite,
-        BottomNavItem.Profile,
-        BottomNavItem.Settings
+        BottomNavItem.Purchases,
+        BottomNavItem.Profile
     )
     val selectedItem by viewModel.selectedItem.collectAsState()
 

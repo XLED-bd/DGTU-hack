@@ -34,7 +34,7 @@ fun NavigationApp(id_user: Int) {
         }
 
         composable(Screen.PurchasesPage.route){
-            PurchasesPage(navController, viewModel)
+            PurchasesPage(navController, viewModel, id_user)
         }
 
 //        composable(Screen.SecondPage.route){
