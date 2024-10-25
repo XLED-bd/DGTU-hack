@@ -1,5 +1,6 @@
 package com.code_wizards.ecology.ui.auth
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,6 +21,7 @@ import androidx.navigation.NavController
 import com.code_wizards.ecology.navigation.Screen
 import com.code_wizards.ecology.viewmodels.AuthViewModel
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun LoginScreen(viewModel: AuthViewModel, navController: NavController) {
     Column(
@@ -53,8 +55,15 @@ fun LoginScreen(viewModel: AuthViewModel, navController: NavController) {
         if (viewModel.errorMessage.value.isNotEmpty()) {
             Text(text = viewModel.errorMessage.value, color = Color.Red)
         }
-        if (viewModel.isLoggedIn.value){
-            navController.navigate(Screen.MainPage.route)
+        if (viewModel.isIDLoggedIn.value != -1){
+            navController.navigate(Screen.MainPage.route) {
+                // Избегаем создания нового экрана, если мы уже на нем
+                launchSingleTop = true
+                // Очищаем стек до ProductList
+                popUpTo(Screen.MainPage.route) {
+                    saveState = true
+                }
+            }
         }
     }
 }

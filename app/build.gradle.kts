@@ -82,4 +82,6 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
+    implementation("org.osmdroid:osmdroid-android:6.1.16")
+
 }

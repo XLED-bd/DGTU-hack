@@ -1,33 +1,30 @@
 package com.code_wizards.ecology.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.code_wizards.ecology.ui.MainPage
+import com.code_wizards.ecology.ui.mainpage.MainPage
+import com.code_wizards.ecology.viewmodels.AuthViewModel
 
-
-@Composable
-fun NavigationApp() {
-    val navController = rememberNavController()
-
-    //val viewModel: MainViewModel = hiltViewModel()
-
-    NavHost(
-        navController,
-        startDestination = Screen.MainPage.route
-    ) {
-        composable(Screen.MainPage.route){
-            MainPage(navController)
-        }
-
-//        composable(Screen.SecondPage.route){
 //
+//@Composable
+//fun NavigationApp(id_user: Int, navController: NavController) {
+//
+//    //val viewModel: MainViewModel = hiltViewModel()
+//
+//    NavHost(
+//        navController= navController,
+//        startDestination = Screen.MainPage.route
+//    ) {
+//        composable(Screen.MainPage.route){
+//            MainPage(navController, id_user)
 //        }
-
-    }
-}
+//
+////        composable(Screen.SecondPage.route){
+////
+////        }
+//
+//    }
+//}
