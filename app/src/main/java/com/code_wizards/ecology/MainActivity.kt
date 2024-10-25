@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             EcologyTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = "glen",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
