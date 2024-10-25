@@ -1,7 +1,7 @@
 package com.code_wizards.ecology.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.code_wizards.ecology.ui.mainpage.bottonbar.BottomNavItem
+import com.code_wizards.ecology.ui.bottonbar.BottomNavItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

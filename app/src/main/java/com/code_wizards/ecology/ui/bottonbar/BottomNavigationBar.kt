@@ -1,4 +1,4 @@
-package com.code_wizards.ecology.ui.mainpage.bottonbar
+package com.code_wizards.ecology.ui.bottonbar
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar

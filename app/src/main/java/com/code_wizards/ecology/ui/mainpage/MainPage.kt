@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.code_wizards.ecology.ui.mainpage.bottonbar.BottomNavigationBar
+import com.code_wizards.ecology.ui.bottonbar.BottomNavigationBar
 import com.code_wizards.ecology.ui.theme.EcologyTheme
 import com.code_wizards.ecology.viewmodels.MainViewModel
 

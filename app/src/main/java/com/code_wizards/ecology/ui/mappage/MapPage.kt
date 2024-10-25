@@ -17,7 +17,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.code_wizards.ecology.ui.mainpage.MainPage
 import com.code_wizards.ecology.ui.mainpage.TopBar
-import com.code_wizards.ecology.ui.mainpage.bottonbar.BottomNavigationBar
+import com.code_wizards.ecology.ui.bottonbar.BottomNavigationBar
 import com.code_wizards.ecology.ui.theme.EcologyTheme
 import com.code_wizards.ecology.viewmodels.MainViewModel
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
