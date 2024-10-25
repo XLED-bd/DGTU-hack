@@ -20,7 +20,7 @@ fun TopBar(){
     val color = Color(0xFFEEEEEE)
 
     Box(
-        modifier = Modifier.height(50.dp).fillMaxWidth()
+        modifier = Modifier.padding(top = 25.dp).height(50.dp).fillMaxWidth()
     ){
         Text(
             text = "Your location? idk",

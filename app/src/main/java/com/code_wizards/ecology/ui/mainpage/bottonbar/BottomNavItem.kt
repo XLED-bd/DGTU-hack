@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.code_wizards.ecology.navigation.Screen
 
 sealed class BottomNavItem(
     val route: String,
@@ -14,13 +15,13 @@ sealed class BottomNavItem(
     val icon: ImageVector
 ) {
     object Home : BottomNavItem(
-        route = "home",
+        route = Screen.MainPage.route,
         title = "Главная",
         icon = Icons.Default.Home
     )
     object Search : BottomNavItem(
-        route = "search",
-        title = "Поиск",
+        route = Screen.MapPage.route,
+        title = "Карта",
         icon = Icons.Default.Search
     )
     object Favorite : BottomNavItem(
@@ -38,4 +39,8 @@ sealed class BottomNavItem(
         title = "Настройки",
         icon = Icons.Default.Settings
     )
+
+    companion object {
+        fun getItems() = listOf(Home, Search, Favorite, Profile, Settings)
+    }
 }

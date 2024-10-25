@@ -29,12 +29,7 @@ fun AuthNavHost() {
 
 
         composable(Screen.MainPage.route){
-            MainPage(navController, viewModel.isIDLoggedIn.value)
-        }
-
-
-        composable(Screen.MapPage.route){
-            MapPage(navController)
+            NavigationApp(viewModel.isIDLoggedIn.value)
         }
 
 
