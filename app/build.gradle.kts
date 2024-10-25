@@ -73,15 +73,13 @@ dependencies {
 
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.navigation.compose.v275)
 
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
-}
-
-kapt {
-    correctErrorTypes = true
 }

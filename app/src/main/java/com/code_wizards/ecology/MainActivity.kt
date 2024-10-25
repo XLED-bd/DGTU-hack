@@ -1,5 +1,6 @@
 package com.code_wizards.ecology
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,37 +12,26 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.code_wizards.ecology.navigation.AuthNavHost
+import com.code_wizards.ecology.navigation.NavigationApp
 import com.code_wizards.ecology.ui.theme.EcologyTheme
+import com.code_wizards.ecology.viewmodels.AuthViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        val authViewModel = AuthViewModel(applicationContext)
+
         setContent {
             EcologyTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "glen",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                AuthNavHost(authViewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    EcologyTheme {
-        Greeting("Android")
     }
 }
