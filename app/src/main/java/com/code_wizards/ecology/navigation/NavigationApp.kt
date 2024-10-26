@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.code_wizards.ecology.ui.mainpage.MainPage
 import com.code_wizards.ecology.ui.mappage.MapPage
+import com.code_wizards.ecology.ui.profilepage.ProfilePage
 import com.code_wizards.ecology.ui.purchases.PurchasesPage
 import com.code_wizards.ecology.viewmodels.AuthViewModel
 import com.code_wizards.ecology.viewmodels.MainViewModel
@@ -37,9 +38,9 @@ fun NavigationApp(id_user: Int) {
             PurchasesPage(navController, viewModel, id_user)
         }
 
-//        composable(Screen.SecondPage.route){
-//
-//        }
+        composable(Screen.ProfilePage.route){
+            ProfilePage(navController, viewModel, id_user)
+        }
 
     }
 }

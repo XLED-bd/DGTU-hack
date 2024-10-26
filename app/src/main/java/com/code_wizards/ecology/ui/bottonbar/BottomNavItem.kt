@@ -32,7 +32,7 @@ sealed class BottomNavItem(
         icon = Icons.Default.Favorite
     )
     object Profile : BottomNavItem(
-        route = "profile",
+        route = Screen.ProfilePage.route,
         title = "Профиль",
         icon = Icons.Default.Person
     )
