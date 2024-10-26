@@ -21,21 +21,18 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.code_wizards.ecology.models.Purchase
+import com.code_wizards.ecology.models.User
 import com.code_wizards.ecology.ui.bottonbar.BottomNavigationBar
 import com.code_wizards.ecology.ui.mainpage.TopBar
 import com.code_wizards.ecology.ui.theme.EcologyTheme
 import com.code_wizards.ecology.viewmodels.MainViewModel
-import com.code_wizards.ecology.viewmodels.PurchasesViewModel
 
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun PurchasesPage(navController: NavController, viewModel: MainViewModel, id_user: Int){
+fun PurchasesPage(navController: NavController, viewModel: MainViewModel, user: User){
 
-    val purchasesViewModel: PurchasesViewModel = hiltViewModel()
 
-    purchasesViewModel.loadPurchases(id_user)
 
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = { TopBar() },
@@ -60,9 +57,9 @@ fun PurchasesPage(navController: NavController, viewModel: MainViewModel, id_use
                 contentPadding = PaddingValues(vertical = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(purchasesViewModel.purchases.value.size) { index ->
-                    PurchaseItemCard(purchase = purchasesViewModel.purchases.value[index])
-                }
+//                items(purchasesViewModel.purchases.value.size) { index ->
+//                    PurchaseItemCard(purchase = purchasesViewModel.purchases.value[index])
+//                }
             }
         }
 
@@ -70,13 +67,13 @@ fun PurchasesPage(navController: NavController, viewModel: MainViewModel, id_use
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun PurchasePreview() {
-    val navController = rememberNavController()
-    val mainViewModel: MainViewModel = hiltViewModel()
-
-    EcologyTheme {
-        PurchasesPage(navController, mainViewModel, 1)
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PurchasePreview() {
+//    val navController = rememberNavController()
+//    val mainViewModel: MainViewModel = hiltViewModel()
+//
+//    EcologyTheme {
+//        PurchasesPage(navController, mainViewModel, 1)
+//    }
+//}

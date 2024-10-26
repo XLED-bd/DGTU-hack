@@ -4,12 +4,6 @@ import com.code_wizards.ecology.models.User
 import com.code_wizards.ecology.network.interfaceApi
 
 class UserRepository(private val api: interfaceApi) {
-    suspend fun getUser(id: Int): Result<User>  = try {
-        Result.success(api.getPrediction(id))
-    } catch (e: Exception){
-        Result.failure(e)
-    }
-
     suspend fun login(email:String, password: String): Result<Int>  = try {
         Result.success(api.login(email, password))
     } catch (e: Exception){

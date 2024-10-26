@@ -4,6 +4,8 @@ data class User(
     val id: Int,
     val first_name: String,
     val second_name: String,
+    val email: String,
+    val phone: String,
     val carbonFootprint: String,
     val achievements: List<Achievement>,
     val dailyImpact: List<Float>

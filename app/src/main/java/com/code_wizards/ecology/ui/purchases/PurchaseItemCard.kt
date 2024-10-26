@@ -93,9 +93,9 @@ fun PurchaseItemCard(purchase: Purchase) {
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-
-    PurchaseItemCard(Purchase("Какое то гвно", "15 деревянных", 15.toString(), false))
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun GreetingPreview() {
+//
+//    PurchaseItemCard(Purchase("Что то", "15 деревянных", 15.toString(), false))
+//}

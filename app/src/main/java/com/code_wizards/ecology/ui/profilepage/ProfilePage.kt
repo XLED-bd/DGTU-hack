@@ -1,5 +1,6 @@
 package com.code_wizards.ecology.ui.profilepage
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -34,24 +35,25 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.code_wizards.ecology.models.Achievement
+import com.code_wizards.ecology.models.User
 import com.code_wizards.ecology.ui.bottonbar.BottomNavigationBar
 import com.code_wizards.ecology.ui.mainpage.TopBar
 import com.code_wizards.ecology.ui.purchases.PurchasesPage
 import com.code_wizards.ecology.ui.theme.EcologyTheme
 import com.code_wizards.ecology.viewmodels.MainViewModel
+import com.code_wizards.ecology.viewmodels.ProfileViewModel
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun ProfilePage(navController: NavController, viewModel: MainViewModel, id_user: Int){
+fun ProfilePage(navController: NavController, viewModel: MainViewModel, user: User){
 
-    val achievements = listOf(
-        Achievement("Eco Saver", "Reduced 100kg of carbon"),
-        Achievement("Green Thumb", "Planted 10 trees"),
-        Achievement("Plastic Warrior", "Avoided 50 plastic bags")
-    )
+    val profileViewModel: ProfileViewModel = hiltViewModel()
 
-    val userName = "John"
-    val userSurname = "Doe"
-    val carbonFootprint = "150kg"
+    val achievements = user.achievements
+
+    val userName = user.first_name
+    val userSurname = user.second_name
+    val carbonFootprint = user.carbonFootprint
 
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = { TopBar() },
@@ -170,13 +172,13 @@ fun AchievementCard(achievement: Achievement) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PurchasePreview() {
-    val navController = rememberNavController()
-    val mainViewModel: MainViewModel = hiltViewModel()
-
-    EcologyTheme {
-        ProfilePage(navController, mainViewModel, 1)
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PurchasePreview() {
+//    val navController = rememberNavController()
+//    val mainViewModel: MainViewModel = hiltViewModel()
+//
+//    EcologyTheme {
+//        ProfilePage(navController, mainViewModel, 1)
+//    }
+//}
