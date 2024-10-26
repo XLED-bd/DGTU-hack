@@ -22,12 +22,6 @@ fun TopBar(){
     Box(
         modifier = Modifier.padding(top = 25.dp).height(50.dp).fillMaxWidth()
     ){
-        Text(
-            text = "Your location? idk",
-            fontSize = 15.sp,
-            modifier = Modifier.align(Alignment.CenterStart).padding(start = 15.dp)
-        )
-
         Button(modifier = Modifier.align(Alignment.CenterEnd).padding(end = 5.dp).width(40.dp),
             colors = ButtonColors(color, color, color, color),
             onClick = { }) {

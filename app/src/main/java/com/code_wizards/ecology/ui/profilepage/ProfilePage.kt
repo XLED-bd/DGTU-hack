@@ -29,25 +29,19 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.code_wizards.ecology.models.Achievement
 import com.code_wizards.ecology.models.User
 import com.code_wizards.ecology.ui.bottonbar.BottomNavigationBar
 import com.code_wizards.ecology.ui.mainpage.TopBar
-import com.code_wizards.ecology.ui.purchases.PurchasesPage
-import com.code_wizards.ecology.ui.theme.EcologyTheme
 import com.code_wizards.ecology.viewmodels.MainViewModel
 import com.code_wizards.ecology.viewmodels.ProfileViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun ProfilePage(navController: NavController, viewModel: MainViewModel, user: User){
-
-    val profileViewModel: ProfileViewModel = hiltViewModel()
 
     val achievements = user.achievements
 
@@ -102,17 +96,6 @@ fun ProfilePage(navController: NavController, viewModel: MainViewModel, user: Us
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // График углеродного следа
-            Text(
-                text = "Carbon Footprint Over Time",
-                color = Color(0xFF344955),
-                fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            //CarbonFootprintChart(dailyImpact)
-
-            Spacer(modifier = Modifier.height(24.dp))
-
             // Достижения
             Text(
                 text = "Achievements",
@@ -120,7 +103,7 @@ fun ProfilePage(navController: NavController, viewModel: MainViewModel, user: Us
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
-            LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            LazyRow {
                 items(achievements.size) { index ->
                     AchievementCard(achievements[index])
                 }
