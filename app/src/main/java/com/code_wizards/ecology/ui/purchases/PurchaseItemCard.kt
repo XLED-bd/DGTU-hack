@@ -1,12 +1,16 @@
 package com.code_wizards.ecology.ui.purchases
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
@@ -25,9 +29,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.code_wizards.ecology.R
 import com.code_wizards.ecology.models.Purchase
+import com.code_wizards.ecology.models.Receipt
+import com.code_wizards.ecology.models.ReceiptItem
 
 @Composable
-fun PurchaseItemCard(purchase: Purchase) {
+fun PurchaseItemCard(receipt: Receipt) {
     Card(
         shape = RoundedCornerShape(12.dp),
         // backgroundColor = Color.White,
@@ -36,58 +42,69 @@ fun PurchaseItemCard(purchase: Purchase) {
         colors = CardDefaults.cardColors( containerColor = Color.White ),
         elevation = CardDefaults.cardElevation( 4.dp)
     ) {
-        Row(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
+        Column (
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        )  {
+            ReceiptItem(receipt.items[0])
+
+            ReceiptItem(receipt.items[1])
+        }
+    }
+}
+
+@Composable
+fun ReceiptItem(item: ReceiptItem){
+    Row(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth()
+    ) {
+        Icon(
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription = "Eco Icon",
+            //tint = if (receipts.ecoFriendly) Color(0xFF34A853) else Color.Gray,
+            modifier = Modifier.size(40.dp)
+        )
+
+        Spacer(modifier = Modifier.width(16.dp))
+
+        Column(
+            modifier = Modifier.weight(1f)
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                contentDescription = "Eco Icon",
-                tint = if (purchase.ecoFriendly) Color(0xFF34A853) else Color.Gray,
-                modifier = Modifier.size(40.dp)
+            Text(
+                text = item.name,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF344955),
+                fontSize = 18.sp
             )
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Text(
+                text = "Цена: ${item.price}",
+                color = Color(0xFF707070),
+                fontSize = 14.sp,
+                modifier = Modifier.padding(vertical = 4.dp)
+            )
 
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(
-                    text = purchase.productName,
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF344955),
-                    fontSize = 18.sp
-                )
+//            Row(
+//                verticalAlignment = Alignment.CenterVertically
+//            ) {
+//                Text(
+//                    text = "Carbon Impact: ${item.}",
+//                    color = if (purchase.ecoFriendly) Color(0xFF34A853) else Color(0xFFD32F2F),
+//                    fontSize = 14.sp,
+//                    fontWeight = FontWeight.SemiBold
+//                )
 
-                Text(
-                    text = "Price: ${purchase.price}",
-                    color = Color(0xFF707070),
-                    fontSize = 14.sp,
-                    modifier = Modifier.padding(vertical = 4.dp)
-                )
-
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = "Carbon Impact: ${purchase.carbonImpact}",
-                        color = if (purchase.ecoFriendly) Color(0xFF34A853) else Color(0xFFD32F2F),
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.SemiBold
-                    )
-
-                    if (purchase.ecoFriendly) {
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Icon(
-                            imageVector = Icons.Default.CheckCircle,
-                            contentDescription = "Eco-friendly",
-                            tint = Color(0xFF34A853),
-                            modifier = Modifier.size(20.dp)
-                        )
-                    }
-                }
-            }
+//                if (purchase.ecoFriendly) {
+//                    Spacer(modifier = Modifier.width(8.dp))
+//                    Icon(
+//                        imageVector = Icons.Default.CheckCircle,
+//                        contentDescription = "Eco-friendly",
+//                        tint = Color(0xFF34A853),
+//                        modifier = Modifier.size(20.dp)
+//                    )
+//                }
+//            }
         }
     }
 }

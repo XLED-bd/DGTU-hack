@@ -45,7 +45,5 @@ interface interfaceCompanyApi {
     @GET("purchasers/{purchaserId}/receipts")
     suspend fun getReceipts(
         @Path("purchaserId") purchaserId: String,
-        @Query("from") fromTimestamp: String,
-        @Query("to") toTimestamp: String
     ): List<Receipt>
 }

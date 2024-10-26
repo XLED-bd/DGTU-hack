@@ -118,7 +118,7 @@ fun VerifyAccessScreen(
 
                 is AccessCodeState.Verified -> {
                     LaunchedEffect(Unit) {
-                        navController.navigate(Screen.MapPage.route)
+                        navController.navigate(Screen.PurchasesPage.route)
                     }
                 }
 

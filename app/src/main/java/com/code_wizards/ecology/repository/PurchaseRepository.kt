@@ -27,11 +27,9 @@ class PurchaseRepository(private val api: interfaceCompanyApi) {
         }
 
     suspend fun getReceipts(
-        purchaserId: String,
-        fromTimestamp: String,
-        toTimestamp: String
+        purchaserId: String
     ): Result<List<Receipt>> =
         runCatching {
-            api.getReceipts(purchaserId, fromTimestamp, toTimestamp)
+            api.getReceipts(purchaserId)
         }
 }

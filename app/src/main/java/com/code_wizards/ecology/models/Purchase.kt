@@ -20,7 +20,8 @@ data class Receipt(
     val id: String,
     val time: String,
     val items: List<ReceiptItem>,
-    val totalPrice: Double
+    val totalPrice: Double,
+    val category: String
 )
 
 data class Purchaser(

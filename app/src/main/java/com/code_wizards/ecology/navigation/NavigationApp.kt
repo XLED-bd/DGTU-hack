@@ -49,7 +49,7 @@ fun NavigationApp(id_user: Int) {
         }
 
         composable(Screen.PurchasesPage.route){
-            PurchasesPage(navController, viewModel, user)
+            PurchasesPage(navController, viewModel, purchaserViewModel)
         }
 
         composable(Screen.ProfilePage.route){
