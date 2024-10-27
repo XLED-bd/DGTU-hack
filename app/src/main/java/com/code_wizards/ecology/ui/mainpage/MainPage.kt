@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,7 +53,7 @@ fun MainPage(navController: NavController, viewModel: MainViewModel, user: User)
             Text("  Здравствуйте, ${user.first_name}", fontSize = 25.sp )
             Spacer(modifier = Modifier.height(8.dp))
             Box(
-                modifier = Modifier//.fillMaxHeight(0.2f)
+                modifier = Modifier.padding(30.dp)//.fillMaxHeight(0.2f)
                     .fillMaxWidth()
                     .height(380.dp)
                     .background(color = Color(0xFFFFFFFF))
@@ -63,11 +64,9 @@ fun MainPage(navController: NavController, viewModel: MainViewModel, user: User)
 
                 Image(painter = painterResource(R.drawable.mainindicator),
                     contentDescription = "mainIndicator",
-                    modifier = Modifier.align(Alignment.Center)
-                        .graphicsLayer {
-                            scaleX = 2.5f
-                            scaleY = 2.5f
-                        })
+                    modifier = Modifier.align(Alignment.Center).fillMaxSize(),
+                    contentScale = ContentScale.Crop
+                )
 
                 Text(text = indicate.toString(),
                     modifier = Modifier.align(Alignment.Center),

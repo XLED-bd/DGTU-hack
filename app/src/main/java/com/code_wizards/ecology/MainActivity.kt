@@ -23,9 +23,8 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-            EcologyTheme {
-                AuthNavHost()
-            }
+            AuthNavHost()
+
         }
     }
 }
