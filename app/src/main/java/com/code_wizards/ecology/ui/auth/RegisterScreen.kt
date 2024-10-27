@@ -33,42 +33,46 @@ fun RegisterScreen(viewModel: AuthViewModel, navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TextField(
+            value = viewModel.username_.value,
+            onValueChange = { viewModel.username_.value = it },
+            label = { Text("Имя") }
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        TextField(
             value = viewModel.username.value,
             onValueChange = { viewModel.username.value = it },
-            label = { Text("Username") }
+            label = { Text("Почта или телефон") }
         )
         Spacer(modifier = Modifier.height(8.dp))
         TextField(
             value = viewModel.password.value,
             onValueChange = { viewModel.password.value = it },
-            label = { Text("Password") },
+            label = { Text("Пароль") },
             visualTransformation = PasswordVisualTransformation()
         )
         Spacer(modifier = Modifier.height(8.dp))
         TextField(
             value = viewModel.confirmPassword.value,
             onValueChange = { viewModel.confirmPassword.value = it },
-            label = { Text("Confirm Password") },
+            label = { Text("Потвердить пароль") },
             visualTransformation = PasswordVisualTransformation()
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { viewModel.register() }) {
-            Text("Register")
+            Text("Зарегистрироваться")
         }
         Spacer(modifier = Modifier.height(8.dp))
         TextButton(onClick = { navController.navigate("login") }) {
-            Text("Already have an account? Login")
+            Text("У вас есть аккаунт? Войдите")
         }
         Spacer(modifier = Modifier.height(8.dp))
         if (viewModel.errorMessage.value.isNotEmpty()) {
             Text(text = viewModel.errorMessage.value, color = Color.Red)
         }
-        if (viewModel.isIDLoggedIn.value != -1){
-            navController.navigate(Screen.MainPage.route){
-                // Избегаем создания нового экрана, если мы уже на нем
+        if (viewModel.errorMessage.value == "Login successful"){
+            navController.navigate("login"){
                 launchSingleTop = true
-                // Очищаем стек до ProductList
-                popUpTo(Screen.MainPage.route) {
+                popUpTo("login") {
                     saveState = true
                 }
             }

@@ -73,7 +73,7 @@ fun PurchasesPage(navController: NavController, viewModel: MainViewModel,
                 .padding(16.dp)
         ) {
             Text(
-                text = "Purchase History",
+                text = "Ваши покупки",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF344955),

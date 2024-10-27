@@ -1,9 +1,13 @@
 package com.code_wizards.ecology.network
 
+import com.code_wizards.ecology.models.LoginRequest
 import com.code_wizards.ecology.models.Purchaser
 import com.code_wizards.ecology.models.Receipt
+import com.code_wizards.ecology.models.RegisterRequst
 import com.code_wizards.ecology.models.User
+import com.code_wizards.ecology.models.Userback
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -11,14 +15,14 @@ import retrofit2.http.Query
 
 
 interface interfaceApi {
-    @GET("get_user/{id}")
-    suspend fun getUser(@Path("id") postId: Int): User
+    @GET("users/{id}")
+    suspend fun getUser(@Path("id") postId: Int): Userback
 
-    @POST("auth/user/login")
-    suspend fun login(email: String, password: String): Int
+    @POST("auth/login")
+    suspend fun login(@Body loginRequest: LoginRequest): Int
 
-    @POST("auth/user/register")
-    suspend fun registration(email: String, password: String): Int
+    @POST("auth/register")
+    suspend fun registration(@Body registerRequst: RegisterRequst)
 }
 
 interface interfaceCompanyApi {

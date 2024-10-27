@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,10 +33,10 @@ import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.infowindow.InfoWindow
 
 @Composable
-fun MapPage(navController: NavController, viewModel: MainViewModel){
+fun MapPage(navController: NavController, viewModel: MainViewModel, string: String){
 
     Scaffold(modifier = Modifier.fillMaxSize(),
-        topBar = { TopBar() },
+        topBar = { TopBar(string) },
         bottomBar = {  BottomNavigationBar(navController, viewModel) }
 
     ){ innerPadding ->
@@ -45,19 +46,22 @@ fun MapPage(navController: NavController, viewModel: MainViewModel){
 
             val markers = listOf(
                 MarkerData(
-                    position = GeoPoint(47.2291,39.7152),
-                    title = "Ростов-на-Дону",
-                    description = "Столица Юга"
+                    position = GeoPoint(47.22316717079965, 39.71526582146469),
+                    title = "Макулатура",
+                    description = "Для сдачи макулаторв",
+                    color = R.color.blue
                 ),
                 MarkerData(
-                    position = GeoPoint(55.7558, 37.6173),
-                    title = "Москва",
-                    description = "Столица России"
+                    position = GeoPoint(47.21486585824713, 39.704818769230315),
+                    title = "Безвозвратные отходы",
+                    description = "Отходы, которые утилизируются безвозвратно",
+                    color = R.color.red
                 ),
                 MarkerData(
-                    position = GeoPoint(59.9343, 30.3351),
-                    title = "Санкт-Петербург",
-                    description = "Культурная столица"
+                    position = GeoPoint(47.24093019156015, 39.70926055936265),
+                    title = "Химические отходы",
+                    description = "Для химических отходов",
+                    color = R.color.brow
                 )
             )
 
@@ -85,7 +89,7 @@ fun MapPage(navController: NavController, viewModel: MainViewModel){
                     }
 
                     // Настройка внешнего вида маркера
-                    icon = createMarkerIcon(context)
+                    icon = createMarkerIcon(context, r=markerData.color)
 
                     // Настройка поведения при клике
                     setOnMarkerClickListener { marker, mapView ->
@@ -135,9 +139,9 @@ fun MapPage(navController: NavController, viewModel: MainViewModel){
     }
 }
 
-fun createMarkerIcon(context: Context): Drawable? {
-    return ContextCompat.getDrawable(context, R.drawable.ic_launcher_foreground)?.apply {
-        setTint(context.getColor(R.color.teal_200))
+fun createMarkerIcon(context: Context, r: Int): Drawable? {
+    return ContextCompat.getDrawable(context, R.drawable.baseline_place_24)?.apply {
+        setTint(context.getColor(r))
     }
 }
 
@@ -151,6 +155,6 @@ fun MapPreview() {
     val viewModel: MainViewModel = hiltViewModel()
 
     EcologyTheme {
-        MapPage(navController, viewModel)
+        MapPage(navController, viewModel, "Карта контейнеров для утилизации отходов")
     }
 }

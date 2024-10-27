@@ -6,6 +6,9 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.code_wizards.ecology.models.LoginRequest
+import com.code_wizards.ecology.models.ReceiptsState
+import com.code_wizards.ecology.models.RegisterRequst
 import com.code_wizards.ecology.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -27,6 +30,7 @@ class AuthViewModel @Inject constructor(
     var password = mutableStateOf("")
     var confirmPassword = mutableStateOf("")
     var errorMessage = mutableStateOf("")
+    var username_ = mutableStateOf("")
 
     private val _isIDLoggedIn = MutableStateFlow(-1)
     val isIDLoggedIn = _isIDLoggedIn.asStateFlow()
@@ -40,8 +44,18 @@ class AuthViewModel @Inject constructor(
     fun login() {
         if (username.value.isNotBlank() && password.value.isNotBlank()) {
             viewModelScope.launch(Dispatchers.IO) {
-                    sharedPrefs.edit().putInt("isLoggedIn", 1).apply() // userRepository.login()
-                    _isIDLoggedIn.value = 0 // userRepository.login()
+                userRepository.login(
+                    LoginRequest(username.value, password.value))
+                    .onSuccess { user ->
+                        _isIDLoggedIn.value = user
+                        errorMessage.value = user.toString()
+                    }
+                    .onFailure { error ->
+                        errorMessage.value = error.toString()
+                    }
+
+                sharedPrefs.edit().putInt("isLoggedIn", _isIDLoggedIn.value).apply() // userRepository.login()
+
                 }
             errorMessage.value = "Login successful"
             }
@@ -53,8 +67,18 @@ class AuthViewModel @Inject constructor(
     fun register() {
         if (username.value.isNotBlank() && password.value.isNotBlank()) {
             viewModelScope.launch(Dispatchers.IO) {
-                sharedPrefs.edit().putInt("isLoggedIn", 1).apply() // userRepository.login()
-                _isIDLoggedIn.value = 0 // userRepository.login()
+                userRepository.registration(registerRequst = RegisterRequst(username_.value, username.value,
+                    "Ростов", password.value))
+                    .onSuccess { id ->
+                        _isIDLoggedIn.value = id
+                    }
+                    .onFailure { error ->
+                        _isIDLoggedIn.value = -1
+                        errorMessage.value = error.toString()
+                    }
+
+                //sharedPrefs.edit().putInt("isLoggedIn", 1).apply() // userRepository.login()
+                _isIDLoggedIn.value = -1 // userRepository.login()
             }
             errorMessage.value =  "Registration successful"
         }

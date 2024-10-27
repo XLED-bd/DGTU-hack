@@ -34,22 +34,22 @@ fun LoginScreen(viewModel: AuthViewModel, navController: NavController) {
         TextField(
             value = viewModel.username.value,
             onValueChange = { viewModel.username.value = it },
-            label = { Text("Username") }
+            label = { Text("Почта или номер телефона") }
         )
         Spacer(modifier = Modifier.height(8.dp))
         TextField(
             value = viewModel.password.value,
             onValueChange = { viewModel.password.value = it },
-            label = { Text("Password") },
+            label = { Text("Пароль") },
             visualTransformation = PasswordVisualTransformation()
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { viewModel.login() }) {
-            Text("Login")
+            Text("Войти")
         }
         Spacer(modifier = Modifier.height(8.dp))
-        TextButton(onClick = { navController.navigate("register") }) {
-            Text("Don't have an account? Register")
+        TextButton(onClick = { navController.navigate("register") }) { // "register"
+            Text("У вас нет аккаунта? Зарегистрируйте")
         }
         Spacer(modifier = Modifier.height(8.dp))
         if (viewModel.errorMessage.value.isNotEmpty()) {
@@ -57,9 +57,7 @@ fun LoginScreen(viewModel: AuthViewModel, navController: NavController) {
         }
         if (viewModel.isIDLoggedIn.value != -1){
             navController.navigate(Screen.MainPage.route) {
-                // Избегаем создания нового экрана, если мы уже на нем
                 launchSingleTop = true
-                // Очищаем стек до ProductList
                 popUpTo(Screen.MainPage.route) {
                     saveState = true
                 }

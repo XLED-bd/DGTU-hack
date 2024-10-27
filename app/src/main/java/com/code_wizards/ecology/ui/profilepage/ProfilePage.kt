@@ -88,7 +88,7 @@ fun ProfilePage(navController: NavController, viewModel: MainViewModel, user: Us
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = "Total Carbon Footprint Reduced: $carbonFootprint",
+                        text = "Всего оставлено углеродного следа: $carbonFootprint кг",
                         color = Color(0xFF344955)
                     )
                 }
@@ -98,7 +98,7 @@ fun ProfilePage(navController: NavController, viewModel: MainViewModel, user: Us
 
             // Достижения
             Text(
-                text = "Achievements",
+                text = "Достижения",
                 color = Color(0xFF344955),
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(bottom = 8.dp)
@@ -113,7 +113,7 @@ fun ProfilePage(navController: NavController, viewModel: MainViewModel, user: Us
 
             // Друзья
             Text(
-                text = "Friends",
+                text = "Друзья",
                 color = Color(0xFF344955),
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(bottom = 8.dp)
@@ -134,7 +134,7 @@ fun AchievementCard(achievement: Achievement) {
         colors = CardDefaults.cardColors( containerColor = Color.White ),
         elevation = CardDefaults.cardElevation( 4.dp),
         modifier = Modifier
-            .width(120.dp)
+            .width(200.dp)
             .padding(4.dp)
     ) {
         Column(

@@ -20,9 +20,9 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideiApi(): interfaceApi{
+    fun provideinterfaceApi(): interfaceApi{
         return Retrofit.Builder()
-            .baseUrl("https://------")
+            .baseUrl("https://a530-85-26-185-93.ngrok-free.app")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(interfaceApi::class.java)
